@@ -98,7 +98,7 @@ function moveNoButton() {
     yesButton.style.transform = `scale(calc(1.2 + 0.75 * ${count}))`;
 
     // Decrementar el tamaño del botón "No"
-    noButton.style.transform = `scale(calc(1.2 - 0.15 * ${count}))`;
+    noButton.style.transform = `scale(calc(1.2 - 0.00 * ${count}))`;
 
     // Evitar que el botón "No" se sobreponga al botón "Sí"
     const newLeft = Math.random() * (buttonsDivRect.width - noButton.offsetWidth);
