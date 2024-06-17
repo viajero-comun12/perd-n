@@ -41,6 +41,7 @@
         }
         #yes-button {
             background-color: green;
+            transition: transform 0.2s ease-in-out;
         }
         #no-button {
             background-color: red;
@@ -79,12 +80,19 @@
     <script>
         function showMessage() {
             document.getElementById('message').textContent = 'Gracias, te amo';
+            document.getElementById('no-button').style.display = 'none'; // Ocultar el botón "No"
         }
 
         function moveNoButton() {
             const noButton = document.getElementById('no-button');
+            const yesButton = document.getElementById('yes-button');
             const buttonsDiv = document.getElementById('buttons');
             const buttonsDivRect = buttonsDiv.getBoundingClientRect();
+
+            // Incrementar el tamaño del botón "Sí"
+            yesButton.style.transform = 'scale(1.2)';
+
+            // Evitar que el botón "No" se sobreponga al botón "Sí"
             const newLeft = Math.random() * (buttonsDivRect.width - noButton.offsetWidth);
             const newTop = Math.random() * (buttonsDivRect.height - noButton.offsetHeight);
             noButton.style.left = `${newLeft}px`;
@@ -93,3 +101,4 @@
     </script>
 </body>
 </html>
+
