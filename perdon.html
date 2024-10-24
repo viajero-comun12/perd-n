@@ -64,10 +64,28 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+        #text-input {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 10px;
+            width: 300px;
+        }
+        #submit-button {
+            display: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <h1>Me perdonas por favor, ya no lo hago más :(</h1>
+    <h1>Emyyyyyyy porfavor dime porque te enojaste :(</h1>
     <div id="buttons">
         <button class="button" id="yes-button" onclick="showMessage()">Sí</button>
         <button class="button" id="no-button" onclick="moveNoButton()">No</button>
@@ -77,37 +95,52 @@
         <img src="imagen.jpg" alt="Imagen descriptiva">
     </div>
 
+    <!-- Cuadro de texto para ingresar el mensaje -->
+    <textarea id="text-input" placeholder="Escribe tu mensaje aquí"></textarea>
+    <button id="submit-button" onclick="sendEmail()">Enviar Mensaje</button>
+
     <script>
         function showMessage() {
             document.getElementById('message').textContent = 'Gracias, te amo';
             document.getElementById('no-button').style.display = 'none'; // Ocultar el botón "No"
+
+            // Mostrar el cuadro de texto y el botón de enviar
+            document.getElementById('text-input').style.display = 'block';
+            document.getElementById('submit-button').style.display = 'block';
         }
 
+        function sendEmail() {
+            const message = document.getElementById('text-input').value;
+            const email = 'leonardoagilall@gmail.com';
+            const subject = 'Mensaje recibido';
+            const body = `Este es el mensaje enviado:\n\n${message}`;
 
-let count = 0;
+            // Abrir el cliente de correo electrónico predeterminado con el mensaje
+            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
 
-function moveNoButton() {
-    count++;
+        let count = 0;
 
-    const noButton = document.getElementById('no-button');
-    const yesButton = document.getElementById('yes-button');
-    const buttonsDiv = document.getElementById('buttons');
-    const buttonsDivRect = buttonsDiv.getBoundingClientRect();
+        function moveNoButton() {
+            count++;
 
-    // Incrementar el tamaño del botón "Sí"
-    yesButton.style.transform = `scale(calc(1.2 + 0.75 * ${count}))`;
+            const noButton = document.getElementById('no-button');
+            const yesButton = document.getElementById('yes-button');
+            const buttonsDiv = document.getElementById('buttons');
+            const buttonsDivRect = buttonsDiv.getBoundingClientRect();
 
-    // Decrementar el tamaño del botón "No"
-    noButton.style.transform = `scale(calc(1.2 - 0.01 * ${count}))`;
+            // Incrementar el tamaño del botón "Sí"
+            yesButton.style.transform = `scale(calc(1.2 + 0.75 * ${count}))`;
 
-    // Evitar que el botón "No" se sobreponga al botón "Sí"
-    const newLeft = Math.random() * (buttonsDivRect.width - noButton.offsetWidth);
-    const newTop = Math.random() * (buttonsDivRect.height - noButton.offsetHeight);
-    noButton.style.left = `${newLeft}px`;
-    noButton.style.top = `${newTop}px`;
-}
+            // Decrementar el tamaño del botón "No"
+            noButton.style.transform = `scale(calc(1.2 - 0.01 * ${count}))`;
 
+            // Evitar que el botón "No" se sobreponga al botón "Sí"
+            const newLeft = Math.random() * (buttonsDivRect.width - noButton.offsetWidth);
+            const newTop = Math.random() * (buttonsDivRect.height - noButton.offsetHeight);
+            noButton.style.left = `${newLeft}px`;
+            noButton.style.top = `${newTop}px`;
+        }
     </script>
 </body>
 </html>
-
